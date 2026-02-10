@@ -182,10 +182,7 @@ TDMS_DateDef(uint8_t Day, uint8_t Month, uint16_t Year)
     }
     else
     {
-      for (m = 12; m >= 1; m--)
-      {
-        total_days += daysPerMonth[leapYear(y)][m];
-      }
+      total_days += leapYear(y) ? 366 : 365;
     }
   }
 
