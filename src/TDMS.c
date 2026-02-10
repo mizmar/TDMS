@@ -81,7 +81,7 @@
 /**
  * @brief  Specify the number of days in the month
  *         daysPerMonth[0][]: non leap year
- *         daysPerMonth[0][]: leap year
+ *         daysPerMonth[1][]: leap year
  */ 
 const int8_t
     daysPerMonth[2][13] = {{-1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
@@ -147,8 +147,8 @@ const uint8_t dataTypeLength[TDMS_DataType_MAX] =
 /**
  * @brief  Calculate number of days between LabVIEW Timestamp base and inserted
  *         date
- * @param  Day: Day number (0 to 31)
- * @param  Month: Month number (0 to 12)
+ * @param  Day: Day number (1 to 31)
+ * @param  Month: Month number (1 to 12)
  * @param  Year: Year number (1904 to ...)
  * @retval Number of days
  */
@@ -168,7 +168,7 @@ TDMS_DateDef(uint8_t Day, uint8_t Month, uint16_t Year)
       for (m = Month; m >= 1; m--)
       {
         if (m == Month)
-          total_days += Day;
+          total_days += Day - 1;
         else
           total_days += daysPerMonth[leapYear(y)][m];
       }
@@ -177,10 +177,7 @@ TDMS_DateDef(uint8_t Day, uint8_t Month, uint16_t Year)
     {
       for (m = 12; m >= BaseMonth; m--)
       {
-        if (m == BaseMonth)
-          total_days += daysPerMonth[leapYear(y)][m] - BaseDay;
-        else
-          total_days += daysPerMonth[leapYear(y)][m];
+        total_days += daysPerMonth[leapYear(y)][m];
       }
     }
     else
