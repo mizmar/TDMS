@@ -278,7 +278,7 @@ TDMS_SaveDataLittleEndian64(uint8_t *data, uint64_t value)
 {
   typedef union
   {
-    uint32_t  Uint64Value;
+    uint64_t  Uint64Value;
     uint8_t   Uint8Value[8];
   } U64toU8_t;
   
