@@ -39,10 +39,6 @@ extern "C" {
   #define TDMS_CONFIG_MAX_CHANNEL_OF_GROUP  8
 #endif
 
-#ifndef TDMS_CONFIG_SYSTEM_ENDIANNESS
-  #define TDMS_CONFIG_SYSTEM_ENDIANNESS  0
-#endif
-
 
 /* Exported Data Types ----------------------------------------------------------*/
 

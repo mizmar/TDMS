@@ -246,21 +246,9 @@ TDMS_GenerateChannelPath(TDMS_Group_t *Group,
 static uint8_t
 TDMS_SaveDataLittleEndian32(uint8_t *data, uint32_t value)
 {
-  typedef union
-  {
-    uint32_t  Uint32Value;
-    uint8_t   Uint8Value[4];
-  } U32toU8_t;
-
-  U32toU8_t Buffer = {.Uint32Value = value,};
-  
   for (uint8_t i = 0; i < 4; i++)
   {
-#if (TDMS_CONFIG_SYSTEM_ENDIANNESS == 0)
-    data[i] = Buffer.Uint8Value[i];
-#else
-    data[i] = Buffer.Uint8Value[4-i];
-#endif
+    data[i] = value >> (8*i);
   }
   
   return 4;
@@ -276,21 +264,9 @@ TDMS_SaveDataLittleEndian32(uint8_t *data, uint32_t value)
 static uint8_t
 TDMS_SaveDataLittleEndian64(uint8_t *data, uint64_t value)
 {
-  typedef union
-  {
-    uint64_t  Uint64Value;
-    uint8_t   Uint8Value[8];
-  } U64toU8_t;
-  
-  U64toU8_t Buffer = {.Uint64Value = value,};
-
   for (uint8_t i = 0; i < 8; i++)
   {
-#if (TDMS_CONFIG_SYSTEM_ENDIANNESS == 0)
-    data[i] = Buffer.Uint8Value[i];
-#else
-    data[i] = Buffer.Uint8Value[8-i];
-#endif
+    data[i] = value >> (8*i);
   }
 
   return 8;

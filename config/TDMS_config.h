@@ -29,14 +29,6 @@ extern "C" {
 #define TDMS_CONFIG_MAX_GROUP_OF_FILE       4
 #define TDMS_CONFIG_MAX_CHANNEL_OF_GROUP    8
 
-/**
- * @brief  Determines system Endianness
- *         - 0: little-endian
- *         - 1: big-endian
- */
-#define TDMS_CONFIG_SYSTEM_ENDIANNESS       0
-
-
 
 #ifdef __cplusplus
 }
